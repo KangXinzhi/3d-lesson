@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@lincode/react-anim-text": "^1.0.2",
-    "lingo3d-react": "latest",
+    "lingo3d-react": "1.25.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

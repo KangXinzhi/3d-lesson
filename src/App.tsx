@@ -14,8 +14,9 @@ import {
   World,
 } from "lingo3d-react";
 import { useEffect, useRef, useState } from "react";
-import "./App.css";
 import AnimText from "@lincode/react-anim-text";
+import { mockLesson } from "./data";
+import "./App.css";
 
 const Game = () => {
   // camera XYZ depends on whether user is looking at designated artwork
@@ -70,7 +71,7 @@ const Game = () => {
     >
       {/* gallery model */}
       {/* 艺术馆模型 */}
-      <Model src="gallery.glb" scale={20} physics="map">
+      <Model src="gallery2.glb" scale={20} physics="map">
         {/* find the artwork of name "a6_CRN.a6_0" */}
         {/* 找到名称为 "a6_CRN.a6_0" 的艺术品 */}
         <Find
@@ -78,21 +79,52 @@ const Game = () => {
           // when mouse is over artwork, set mouseOver state, which will trigger camera spring animation and artwork outline
           // 当鼠标移到艺术品上，改变mouseOver状态，触发相机弹簧动画和艺术品轮廓
           outline={mouseOver}
-          onMouseOver={() => setMouseOver(true)}
-          onMouseOut={() => setMouseOver(false)}
+          onMouseMove={(e) => {
+            if (!mouseOver && e.distance < 700) {
+              setMouseOver(true)
+            }
+          }}
+          onMouseOut={(e) => { setMouseOver(false) }}
         >
           {/* when mouse is over artwork, show artwork description */}
           {/* 当鼠标移到艺术品上，显示艺术品描述文字 */}
           {mouseOver && (
             <HTML>
-              <div style={{ color: "white" }}>
+              <div
+                style={{
+                  marginTop: '-50px',
+                  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                  letterSpacing: '2px',
+                  color: "white",
+                  width: "500px",
+                  padding: '16px',
+                }}
+              >
                 <AnimText
                   style={{ fontWeight: "bold", fontSize: 20 }}
                   duration={1000}
                 >
-                  Artwork Title
+                  加油科学课
                 </AnimText>
-                <AnimText duration={1000}>Bird Watch</AnimText>
+                <AnimText
+                  style={{ fontSize: 14 }}
+                  duration={0}
+                >
+                  紧密贴合国家新课标科学课要求。
+                  课程中，科学家将科学知识深入浅出的讲解，
+                  由知识引发学生对世界的思考，
+                  让孩子发现身边的科学现象,
+                  在学习中培养学生对科学学习的兴趣。
+                  通过探究、实践完成有趣的课堂学习，
+                  让学生直观理解知识点、启蒙科学精神，
+                  掌握动植物，地球，材料等基础知识内容。
+                  培养学生掌握科学探究的过程和方法，
+                  尝试应用于科学探究活动中，
+                  逐步学会科学的看问题、想问题。
+                  并在学习的过程中提高学科学，爱科学的兴趣，
+                  对生活保持好奇心，
+                  通过沟通，协作，实验，自主探究，解决问题。
+                </AnimText>
               </div>
             </HTML>
           )}
@@ -114,7 +146,7 @@ const Game = () => {
           ref={dummyRef}
           physics="character"
           x={243.19}
-          y={-910.47}
+          y={0}
           z={-577.26}
           roughnessFactor={0}
           metalnessFactor={0.3}
@@ -152,7 +184,7 @@ const Game = () => {
 // 加载界面
 const App = () => {
   const progress = usePreload(
-    ["env.hdr", "gallery.glb", "pattern.jpeg"],
+    ["env.hdr", "gallery2.glb", "pattern.jpeg"],
     "32.7mb"
   );
 
