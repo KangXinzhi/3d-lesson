@@ -12,16 +12,18 @@ import {
   useSpring,
   useWindowSize,
   World,
+  Editor,
 } from "lingo3d-react";
 import { useEffect, useRef, useState } from "react";
 import AnimText from "@lincode/react-anim-text";
-import { mockLesson } from "./data";
+import { lessonInfo } from "./data";
 import "./App.css";
 
 const Game = () => {
   // camera XYZ depends on whether user is looking at designated artwork
   // 相机的XYZ取决于用户是否瞄准指定的艺术品
-  const [mouseOver, setMouseOver] = useState(false);
+  const lessonInfoFalse = new Array(lessonInfo.length).fill(false)
+  const [mouseOver, setMouseOver] = useState([...lessonInfoFalse]);
   const camX = mouseOver ? 50 : 0;
   const camY = mouseOver ? 100 : 100;
   const camZ = mouseOver ? 100 : 300;
@@ -69,15 +71,55 @@ const Game = () => {
       outlinePattern="pattern.jpeg"
       repulsion={1}
     >
-      {/* gallery model */}
-      {/* 艺术馆模型 */}
-      <Model src="gallery2.glb" scale={20} physics="map">
-        {/* find the artwork of name "a6_CRN.a6_0" */}
-        {/* 找到名称为 "a6_CRN.a6_0" 的艺术品 */}
-        <Find
+      {/* <Editor /> */}
+      <Model src="gallery.glb" scale={20} physics="map">
+        {lessonInfo.map((item, index) => (
+          <Find
+            key={item.id}
+            name={item.find}
+            outline={mouseOver[index]}
+            onMouseMove={(e) => {
+              if (!mouseOver[index] && e.distance < 700) {
+                let newLessonInfoFalse = [...lessonInfoFalse].map((v, i) => {
+                  if (i === index) return true
+                  return false
+                })
+
+                setMouseOver(newLessonInfoFalse)
+              }
+            }}
+            onMouseOut={(e) => { setMouseOver(lessonInfoFalse) }}
+          >
+            {mouseOver[index] && (
+              <HTML>
+                <div
+                  style={{
+                    marginTop: '-50px',
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    letterSpacing: '2px',
+                    color: "white",
+                    width: "500px",
+                    padding: '16px',
+                  }}
+                >
+                  <AnimText
+                    style={{ fontWeight: "bold", fontSize: 20 }}
+                    duration={1000}
+                  >
+                    {item.name}
+                  </AnimText>
+                  <span
+                    style={{ fontSize: 14 }}
+                  >
+                    {item.intro}
+                  </span>
+                </div>
+              </HTML>
+            )}
+          </Find>
+        ))}
+        {/* <Find
           name="a6_CRN.a6_0"
-          // when mouse is over artwork, set mouseOver state, which will trigger camera spring animation and artwork outline
-          // 当鼠标移到艺术品上，改变mouseOver状态，触发相机弹簧动画和艺术品轮廓
           outline={mouseOver}
           onMouseMove={(e) => {
             if (!mouseOver && e.distance < 700) {
@@ -86,8 +128,6 @@ const Game = () => {
           }}
           onMouseOut={(e) => { setMouseOver(false) }}
         >
-          {/* when mouse is over artwork, show artwork description */}
-          {/* 当鼠标移到艺术品上，显示艺术品描述文字 */}
           {mouseOver && (
             <HTML>
               <div
@@ -128,11 +168,9 @@ const Game = () => {
               </div>
             </HTML>
           )}
-        </Find>
+        </Find> */}
       </Model>
 
-      {/* Dummy character, and the camera that tracks it */}
-      {/* 角色模型，以及追踪它的相机 */}
       <ThirdPersonCamera
         mouseControl
         active
@@ -145,20 +183,20 @@ const Game = () => {
         <Dummy
           ref={dummyRef}
           physics="character"
-          x={243.19}
-          y={0}
-          z={-577.26}
+          x={-914.58}
+          y={-887.57}
+          z={-108.62}
+          rotationY={66.97}
           roughnessFactor={0}
           metalnessFactor={0.3}
           strideMove
         />
       </ThirdPersonCamera>
 
-      {/* crosshair */}
+
       {/* 准星 */}
       <Reticle />
 
-      {/* virtual joystick */}
       {/* 虚拟摇杆 */}
       <Joystick
         onMove={(e) => {
@@ -184,7 +222,7 @@ const Game = () => {
 // 加载界面
 const App = () => {
   const progress = usePreload(
-    ["env.hdr", "gallery2.glb", "pattern.jpeg"],
+    ["env.hdr", "gallery.glb", "pattern.jpeg"],
     "32.7mb"
   );
 
