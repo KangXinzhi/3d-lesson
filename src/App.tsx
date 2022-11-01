@@ -18,15 +18,15 @@ import { useEffect, useRef, useState } from "react";
 import AnimText from "@lincode/react-anim-text";
 import { lessonInfo } from "./data";
 import "./App.css";
-
 const Game = () => {
   // camera XYZ depends on whether user is looking at designated artwork
   // 相机的XYZ取决于用户是否瞄准指定的艺术品
   const lessonInfoFalse = new Array(lessonInfo.length).fill(false)
   const [mouseOver, setMouseOver] = useState([...lessonInfoFalse]);
-  const camX = mouseOver ? 50 : 0;
-  const camY = mouseOver ? 100 : 100;
-  const camZ = mouseOver ? 100 : 300;
+  const [num, setNum] = useState(0)
+  const camX = mouseOver[num] ? 50 : 0;
+  const camY = mouseOver[num] ? 100 : 100;
+  const camZ = mouseOver[num] ? 100 : 300;
 
   // Camera spring animation
   // 相机的弹簧动画
@@ -62,33 +62,39 @@ const Game = () => {
     <World
       defaultLight="env.hdr"
       skybox="env.hdr"
-      bloom
-      bloomStrength={0.3}
-      bloomRadius={1}
-      bloomThreshold={0.8}
+      // bloom
+      // bloomStrength={0.3}
+      // bloomRadius={1}
+      // bloomThreshold={1.9}
       outlineHiddenColor="red"
       outlinePulse={1000}
       outlinePattern="pattern.jpeg"
       repulsion={1}
     >
       {/* <Editor /> */}
-      <Model src="gallery.glb" scale={20} physics="map">
+      <Model src="gallery2.glb" scale={20} physics="map">
         {lessonInfo.map((item, index) => (
           <Find
             key={item.id}
             name={item.find}
             outline={mouseOver[index]}
             onMouseMove={(e) => {
-              if (!mouseOver[index] && e.distance < 700) {
+             
+              if (!mouseOver[index] && e.distance < 600) {
                 let newLessonInfoFalse = [...lessonInfoFalse].map((v, i) => {
                   if (i === index) return true
                   return false
                 })
 
                 setMouseOver(newLessonInfoFalse)
+                setNum(index)
               }
             }}
-            onMouseOut={(e) => { setMouseOver(lessonInfoFalse) }}
+            onMouseOut={(e) => { 
+              setTimeout(()=>{
+                setMouseOver(lessonInfoFalse)
+              },300)
+            }}
           >
             {mouseOver[index] && (
               <HTML>

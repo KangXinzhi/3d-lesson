@@ -91,7 +91,7 @@ export const lessonInfo = [
     "docId": "d39ed73fc9f849dd8cf45a7c5417ea1a"
   },
   {
-    "find": 'a1_CRN.a2_0',
+    "find": 'a2_CRN.a2_0',
     "id": 17,
     "name": "二十四节气诗画",
     "key": "Art-poem",
@@ -134,7 +134,7 @@ export const lessonInfo = [
     "docId": "55a5adab62b04dfc890f647c0235b074"
   },
   {
-    "find": 'a2_CRN.a2_0',
+    "find": 'a12_CRN.a12_0',
     "id": 16,
     "name": "表演与表达",
     "key": "acting",
@@ -604,7 +604,7 @@ export const lessonInfo = [
     "docId": "843f2fdd67a34c72a41fe920e5cc7a89"
   },
   {
-    "find": 'a12_CRN.a12_0',
+    "find": 'a7_CRN.a7_0',
     "id": 39,
     "name": "趣味美育",
     "key": "School Art",
@@ -654,43 +654,43 @@ export const lessonInfo = [
     ],
     "docId": "852d2f766da34625a487c662a8b97e5f"
   },
-  {
-    "find": 'a7_CRN.a7_0',
-    "id": 31,
-    "name": "中文绘本阅读",
-    "key": "Chinese Picture Book",
-    "intro": "中文绘本阅读根据语文课程标准和3至6岁儿童学习与发展指南，教研团队从成千上万本书籍中优中选优；阅读能力全面提升，促进学生综合能力的全面发展；精选主题，多元发展，不同主题的学习培养孩子各项好习惯。",
-    "remark": "",
-    "customerType": [
-      "ToG",
-      "ToB"
-    ],
-    "isRecommended": "no",
-    "poster": "https://ugc.smartstudy.com/uskid/image/20220218/1717-28592R5527.png",
-    "tagList": [
-      {
-        "id": 10,
-        "name": "一年级",
-        "garoup": "适用年级"
-      },
-      {
-        "id": 11,
-        "name": "二年级",
-        "garoup": "适用年级"
-      },
-      {
-        "id": 127,
-        "name": "智育",
-        "garoup": "五育分类"
-      },
-      {
-        "id": 129,
-        "name": "美育",
-        "garoup": "五育分类"
-      }
-    ],
-    "docId": "64c0bc92b123405ab753f0a9d871fb28"
-  },
+  // {
+  //   "find": 'a7_CRN.a7_0',
+  //   "id": 31,
+  //   "name": "中文绘本阅读",
+  //   "key": "Chinese Picture Book",
+  //   "intro": "中文绘本阅读根据语文课程标准和3至6岁儿童学习与发展指南，教研团队从成千上万本书籍中优中选优；阅读能力全面提升，促进学生综合能力的全面发展；精选主题，多元发展，不同主题的学习培养孩子各项好习惯。",
+  //   "remark": "",
+  //   "customerType": [
+  //     "ToG",
+  //     "ToB"
+  //   ],
+  //   "isRecommended": "no",
+  //   "poster": "https://ugc.smartstudy.com/uskid/image/20220218/1717-28592R5527.png",
+  //   "tagList": [
+  //     {
+  //       "id": 10,
+  //       "name": "一年级",
+  //       "garoup": "适用年级"
+  //     },
+  //     {
+  //       "id": 11,
+  //       "name": "二年级",
+  //       "garoup": "适用年级"
+  //     },
+  //     {
+  //       "id": 127,
+  //       "name": "智育",
+  //       "garoup": "五育分类"
+  //     },
+  //     {
+  //       "id": 129,
+  //       "name": "美育",
+  //       "garoup": "五育分类"
+  //     }
+  //   ],
+  //   "docId": "64c0bc92b123405ab753f0a9d871fb28"
+  // },
   // {
   //   "id": 26,
   //   "name": "基础数学",
