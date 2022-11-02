@@ -72,7 +72,7 @@ const Game = () => {
       repulsion={1}
     >
       {/* <Editor /> */}
-      <Model src="gallery2.glb" scale={20} physics="map">
+      <Model src="gallery.glb" scale={20} physics="map">
         {lessonInfo.map((item, index) => (
           <Find
             key={item.id}
